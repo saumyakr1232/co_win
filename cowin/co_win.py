@@ -1,9 +1,9 @@
 from urllib.request import urlopen, Request
+from urllib import error
 import json
 from datetime import datetime, timedelta
 import time
-import sys
-from Model.Center import Center
+from models.Center import Center
 import winsound
 from termcolor import cprint
 import webbrowser
@@ -45,9 +45,14 @@ def main(pincode= 841440, age=18):
             else:
                 cprint(f"Vaccine is not available at {pincode} for age: {age}",'red')  
             time.sleep(4)
-        except KeyboardInterrupt:
+        except KeyboardInterrupt :
             print("Exiting...[*]")
             break
+        except error.URLError:
+            pass
+        except error.HTTPError:
+            pass
+
                 
 
 
