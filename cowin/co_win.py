@@ -33,9 +33,8 @@ def main(pincode= 841440, age=18):
             print("Refreshing")
             j_data = search_by_pincode(pincode)
             for c in j_data['centers']:
-                print(c)
                 center = Center.from_json(c)
-                
+                print(center)
                 if center.get_availablity(age):
                     cprint(f"Vaccine available at {center.name}", 'green')
                     webbrowser.open("https://www.cowin.gov.in/home")
@@ -53,8 +52,8 @@ def main(pincode= 841440, age=18):
         except error.HTTPError:
             pass
 
-                
-
+if __name__ == "__main__":
+    main()
 
 
     

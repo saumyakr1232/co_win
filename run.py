@@ -7,7 +7,7 @@ def run():
         if age is None:
             main(int(pincode))
         else:
-            main(int(pincode), age)
+            main(int(pincode), int(age))
     else:
         print("invalid pincode")
 

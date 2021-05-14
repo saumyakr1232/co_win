@@ -24,8 +24,8 @@ class Session:
             self.date = datetime.date(datetime.strptime(date, f"%d-%m-%Y"))
         except ValueError as e:
             print(f"Error while getting session Date {e}")
-        
-    
+    def __str__(self) -> str:
+        return f"""min_age_limit: {self.min_age_limit}, Available: {self.available_capacity}"""    
 
     
 class Center:
@@ -61,7 +61,8 @@ class Center:
         del j_data['from']
         return Center(**j_data)
 
-    
+    def __str__(self) -> str:
+        return f"Name: {self.name}, Sessions : {[str(s) for s in self.sessions]}"
 
 
 
@@ -81,4 +82,4 @@ if __name__ == "__main__":
     # print(center.from_, center.to)
     j_data = {'centers': [{'center_id': 520128, 'name': 'THAWE PHC', 'address': 'RCH Campus Thawe PHC Thawe PHC', 'state_name': 'Bihar', 'district_name': 'Gopalganj', 'block_name': 'Thawe', 'pincode': 841440, 'lat': 26, 'long': 84, 'from': '09:00:00', 'to': '18:00:00', 'fee_type': 'Free', 'sessions': [{'session_id': 'e622514c-d4f9-4ad3-82fb-54b5d099e157', 'date': '13-05-2021', 'available_capacity': 0, 'min_age_limit': 18, 'vaccine': 'COVISHIELD', 'slots': ['09:00AM-11:00AM', '11:00AM-01:00PM', '01:00PM-03:00PM', '03:00PM-06:00PM']}, {'session_id': '5fc79035-5837-4e92-a9e6-1907437d0421', 'date': '13-05-2021', 'available_capacity': 11, 'min_age_limit': 45, 'vaccine': 'COVISHIELD', 'slots': ['09:00AM-11:00AM', '11:00AM-01:00PM', '01:00PM-03:00PM', '03:00PM-06:00PM']}, {'session_id': '4258b4ca-9858-437c-8156-b8c52043971d', 'date': '14-05-2021', 'available_capacity': 0, 'min_age_limit': 18, 'vaccine': 'COVISHIELD', 'slots': ['09:00AM-11:00AM', '11:00AM-01:00PM', '01:00PM-03:00PM', '03:00PM-06:00PM']}]}]}
     center  = Center.from_json(j_data['centers'][0])
-    print(center.get_availablity(44))
+    print(center)
